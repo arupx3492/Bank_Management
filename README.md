@@ -90,8 +90,8 @@ The Bank Application is a Spring Boot-based project that provides a secure and f
 
 1. **Clone the Repository**  
    ```bash
-   git clone <repository-url>
-   cd BankApplication
+   https://github.com/arupx3492/Bank_Management.git
+   cd BankingSystem
    ```  
 
 2. **Configure the Database**  
