@@ -35,7 +35,7 @@ The Bank Application is a Spring Boot-based project that provides a secure and f
 ### **Authentication and Authorization**  
 - **Sign Up**: Register as a new user.  
 - **Login**: Authenticate and receive a JWT token for secure access.  
-- **Logout**: Invalidate the JWT token.  
+- **Logout**: Logout a user.  
 
 ---
 
