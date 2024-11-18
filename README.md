@@ -1,4 +1,4 @@
-# GreatLearningAssignmentApplication
+# Banking-System
 
 ## Overview
 This Spring Boot application is designed to manage various banking functionalities, including customer and admin operations, such as managing user accounts, loan applications, and chat functionality between users and admins. The application is secured using JWT-based authentication, with different role-based access for customers and admins.
