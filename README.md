@@ -1,52 +1,117 @@
-# Banking-System
+# Bank Application  
 
-## Overview
-This Spring Boot application is designed to manage various banking functionalities, including customer and admin operations, such as managing user accounts, loan applications, and chat functionality between users and admins. The application is secured using JWT-based authentication, with different role-based access for customers and admins.
+## Overview  
+The Bank Application is a Spring Boot-based project that provides a secure and feature-rich platform for managing user accounts, loans, and customer-admin interactions. This project incorporates layered architecture, role-based access control, and secure JWT authentication to deliver a seamless banking experience.  
 
-## Features
-- **User Authentication**: JWT-based authentication with Spring Security, supporting roles for `ADMIN` and `CUSTOMER`.
-- **Account Management**: Users Can Deposit, Withdraw, transfer funds, and apply for a Loan.
-- **Loan Management**: Admins can approve or deny loans based on customer balance.
-- **Chat Functionality**: Allows communication between `CUSTOMER` and `ADMIN`.
-- **REST API Documentation**: API documentation is available through Swagger UI.
+---
 
-## Technologies Used
-- **Spring Boot**: Core application framework.
-- **Spring Security**: For authentication and role-based authorization.
-- **JWT**: JSON Web Token for secure user authentication.
-- **Spring Data JPA**: For ORM and database interaction.
-- **MySQL**: Database for storing application data.
-- **Swagger**: API documentation and testing tool.
+## Features  
 
-## Setup and Configuration
+### **Admin Functionalities**  
+1. **Account Management**  
+   - Activate or deactivate user accounts.  
+   - Deposit, withdraw, and transfer money between accounts.  
 
-### Prerequisites
-- Java 17 
-- Maven
-- MySQL
+2. **Loan Management**  
+   - Approve or deny loans based on user balances and minimum amount criteria.  
+   - View all pending loan applications.  
 
-### Database Configuration
-Configure the database properties in `application.properties`:
+3. **Messaging System**  
+   - Send messages directly to users for communication.  
 
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/your_database
-spring.datasource.username=your_username
-spring.datasource.password=your_password
-spring.jpa.hibernate.ddl-auto=update
+### **Customer Functionalities**  
+1. **Account Management**  
+   - Deposit and withdraw money.  
+   - Transfer money to other accounts.  
 
-## Swagger UI Configuration
+2. **Loan Management**  
+   - Apply for loans.  
+   - Calculate EMI for desired loan amounts and terms.  
 
-Swagger documentation is set up using the `springdoc-openapi` library. To access Swagger UI, visit:
+3. **Messaging System**  
+   - Send messages to admins.  
+   - View all received messages.  
 
+### **Authentication and Authorization**  
+- **Sign Up**: Register as a new user.  
+- **Login**: Authenticate and receive a JWT token for secure access.  
+- **Logout**: Invalidate the JWT token.  
 
-Swagger UI allows you to test all available endpoints in the application.
+---
 
-## Security Configuration
+## API Endpoints  
 
-The application uses JWT for secure access to APIs. Only authenticated users with valid tokens can access specific resources. The roles and accessible endpoints are:
+### **Admin Endpoints (`/admin`)**  
+- **Account Management**  
+  - `PUT /activate/{userId}`: Activate a user account.  
+  - `PUT /deactivate/{userId}`: Deactivate a user account.  
+  - `PUT /deposit`: Deposit money into a user's account.  
+  - `PUT /withdraw`: Withdraw money from a user's account.  
+  - `PUT /transfer`: Transfer money between accounts.  
 
-- `/auth/**`: Publicly accessible for authentication (login).
-- `/admin/**`: Accessible only by users with the `ADMIN` role.
-- `/customer/**`: Accessible only by users with the `CUSTOMER` role.
-- `/swagger-ui/**` and `/v3/api-docs/**`: Publicly accessible for API documentation.
+- **Loan Management**  
+  - `PUT /loanApprove/{loanId}/{minAmount}`: Approve or deny a loan based on minimum balance.  
+  - `GET /loans`: Retrieve all pending loan applications.  
 
+- **Messaging**  
+  - `POST /sendMessage/{userId}`: Send a message to a user.  
+
+### **Authentication Endpoints (`/auth`)**  
+- `POST /signup`: Register a new user.  
+- `POST /login`: Login and receive a JWT token.  
+- `POST /logout`: Logout and invalidate the JWT token.  
+
+### **Customer Endpoints (`/customer`)**  
+- **Account Management**  
+  - `PUT /deposit/{amount}`: Deposit money into your account.  
+  - `PUT /withdraw/{amount}`: Withdraw money from your account.  
+  - `POST /transfer`: Transfer money to another account.  
+
+- **Loan Management**  
+  - `POST /applyLoan`: Apply for a loan.  
+  - `GET /calculateEMI`: Calculate the EMI for a loan.  
+
+- **Messaging**  
+  - `POST /sendMessage`: Send a message to the admin.  
+  - `GET /getMessages`: Retrieve all messages.  
+
+---
+
+## Technology Stack  
+
+- **Backend Framework**: Spring Boot  
+- **Authentication**: JWT with Spring Security  
+- **Database**: MySQL  
+- **API Testing**: Postman  
+
+---
+
+## How to Run  
+
+1. **Clone the Repository**  
+   ```bash
+   git clone <repository-url>
+   cd BankApplication
+   ```  
+
+2. **Configure the Database**  
+   - Update the `application.properties` file with your MySQL database credentials.  
+
+3. **Run the Application**  
+   ```bash
+   mvn spring-boot:run
+   ```  
+
+4. **Access the API**  
+   - Use Postman to test the API endpoints.  
+   - Swagger UI is available at `http://localhost:8080/swagger-ui/index.html`.  
+
+---
+
+## Future Enhancements  
+
+- Add WebSocket-based real-time chat functionality.  
+- Implement transaction history tracking.  
+- Enhance the user interface with a frontend framework.  
+
+--- 
